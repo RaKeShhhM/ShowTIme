@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="g" x1="10" y1="8" x2="54" y2="58" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ff4968"/>
+      <stop offset="1" stop-color="#e51f49"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Rounded cinema-ticket mark -->
+  <path d="M15 10h34a7 7 0 0 1 7 7v8.5a6 6 0 0 0 0 13V47a7 7 0 0 1-7 7H15a7 7 0 0 1-7-7v-8.5a6 6 0 0 0 0-13V17a7 7 0 0 1 7-7Z"
+        fill="url(#g)"/>
+
+  <!-- Ticket perforation -->
+  <path d="M22 15v34" stroke="#fff" stroke-width="2" stroke-dasharray="3 4" opacity=".35"/>
+
+  <!-- Play symbol -->
+  <path d="M29 21.5 45 32 29 42.5v-21Z" fill="#fff"/>
+
+  <!-- Small cinema sparkle -->
+  <path d="m48 12 1.7 3.3L53 17l-3.3 1.7L48 22l-1.7-3.3L43 17l3.3-1.7L48 12Z"
+        fill="#fff" opacity=".9"/>
+</svg>

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="48" viewBox="0 0 220 48" fill="none">
+  <g id="ShowTime-Navbar-Logo">
+    <!-- Cinema ticket mark -->
+    <rect x="2" y="4" width="40" height="40" rx="11" fill="#F22852"/>
+    <!-- Ticket cutouts -->
+    <circle cx="38" cy="4" r="4" fill="#090B13"/>
+    <circle cx="38" cy="36" r="4" fill="#090B13"/>
+    <!-- Play symbol -->
+    <path d="M14 13L14 35L30 24L14 13Z" fill="white"/>
+    <!-- Film-strip accent -->
+    <rect x="32" y="14" width="2" height="20" rx="1" fill="white" fill-opacity=".8"/>
+
+    <!-- Wordmark -->
+    <text x="51" y="33"
+          font-family="Inter, Arial, Helvetica, sans-serif"
+          font-size="25"
+          font-weight="700"
+          letter-spacing="-0.65px">
+      <tspan fill="#FAFAFF">Show</tspan><tspan fill="#F53D5D">Time</tspan>
+    </text>
+  </g>
+</svg>
