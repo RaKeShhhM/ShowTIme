@@ -57,26 +57,28 @@ const Navbar = () => {
         >
           Theaters
         </Link>
+        <button
+          onClick={() => {
+            setIsOpen(false);
+            navigate("/");
+            setTimeout(() => {
+              document.getElementById("now-showing")?.scrollIntoView({ behavior: "smooth" });
+            }, 100);
+          }}
+          className="cursor-pointer"
+        >
+          Releases
+        </button>
         <Link
           onClick={() => {
             scrollTo(0, 0);
             setIsOpen(false);
           }}
-          to="/"
+          to="/favorite"
+          style={{ visibility: favoriteMovies.length > 0 ? "visible" : "hidden" }}
         >
-          Releases
+          Favorites
         </Link>
-        {favoriteMovies.length > 0 && (
-          <Link
-            onClick={() => {
-              scrollTo(0, 0);
-              setIsOpen(false);
-            }}
-            to="/favorite"
-          >
-            Favorites
-          </Link>
-        )}
       </div>
 
       <div className="flex items-center gap-8">
