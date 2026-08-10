@@ -4,11 +4,9 @@ import { assets } from "../assets/assets";
 import { MenuIcon, SearchIcon, TicketPlus, XIcon } from "lucide-react";
 import { useClerk, UserButton, useUser } from "@clerk/clerk-react";
 import { useAppContext } from "../context/AppContext";
-import SearchModal from "./SearchModal";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const { user } = useUser();
   const { openSignIn } = useClerk();
 
@@ -85,7 +83,7 @@ const Navbar = () => {
 
       <div className="flex items-center gap-8">
         <SearchIcon
-          onClick={() => setIsSearchOpen(true)}
+          onClick={() => { navigate("/movies"); scrollTo(0, 0); }}
           className="max-md:hidden w-6 h-6 cursor-pointer hover:text-primary transition"
         />
         {!user ? (
@@ -112,7 +110,6 @@ const Navbar = () => {
         onClick={() => setIsOpen(!isOpen)}
         className="max-md:ml-4 md:hidden w-8 h-8 cursor-pointer"
       />
-      {isSearchOpen && <SearchModal onClose={() => setIsSearchOpen(false)} />}
     </div>
   );
 };

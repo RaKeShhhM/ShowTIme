@@ -93,17 +93,41 @@ export const addShow = async (req, res) => {
   }
 };
 
-// API to get all shows from the database
+// API to get all shows from the database (supports ?q, ?genre, ?year filters)
 export const getShows = async (req, res) => {
   try {
+    const { q, genre, year } = req.query;
+
     const shows = await Show.find({ showDateTime: { $gte: new Date() } })
       .populate("movie")
       .sort({ showDateTime: 1 });
 
-    // filter unique shows
-    const uniqueShows = new Set(shows.map((show) => show.movie));
+    // Deduplicate by movie id
+    const movieMap = new Map();
+    for (const show of shows) {
+      if (show.movie && !movieMap.has(String(show.movie._id))) {
+        movieMap.set(String(show.movie._id), show.movie);
+      }
+    }
+    let movies = Array.from(movieMap.values());
 
-    res.json({ success: true, shows: Array.from(uniqueShows) });
+    // Apply server-side filters
+    if (q) {
+      const lower = q.toLowerCase();
+      movies = movies.filter((m) => m.title?.toLowerCase().includes(lower));
+    }
+    if (genre) {
+      movies = movies.filter((m) =>
+        m.genres?.some((g) => g.name === genre)
+      );
+    }
+    if (year) {
+      movies = movies.filter((m) =>
+        m.release_date?.startsWith(String(year))
+      );
+    }
+
+    res.json({ success: true, shows: movies });
   } catch (error) {
     console.error(error);
     res.json({ success: false, message: error.message });
