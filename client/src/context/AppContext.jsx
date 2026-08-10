@@ -12,6 +12,7 @@ export const AppProvider = ({ children }) => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [shows, setShows] = useState([]);
   const [favoriteMovies, setFavoriteMovies] = useState([]);
+  const [isLoadingShows, setIsLoadingShows] = useState(true);
 
   const image_base_url = import.meta.env.VITE_TMDB_IMAGE_BASE_URL;
 
@@ -38,6 +39,7 @@ export const AppProvider = ({ children }) => {
   };
 
   const fetchShows = async () => {
+    setIsLoadingShows(true);
     try {
       const { data } = await axios.get("/api/show/all");
 
@@ -49,6 +51,8 @@ export const AppProvider = ({ children }) => {
       }
     } catch (error) {
       console.error(error);
+    } finally {
+      setIsLoadingShows(false);
     }
   };
 
@@ -88,6 +92,7 @@ export const AppProvider = ({ children }) => {
     navigate,
     isAdmin,
     shows,
+    isLoadingShows,
     favoriteMovies,
     fetchFavoriteMovies,
     image_base_url,
