@@ -90,9 +90,9 @@ const Movies = () => {
       <BlurCircle bottom="50px" right="50px" />
 
       {/* Filter Bar */}
-      <div className="flex flex-wrap items-center gap-3 mb-8">
-        {/* Text search */}
-        <div className="flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-2 flex-1 min-w-52">
+      <div className="flex flex-col gap-3 mb-8">
+        {/* Row 1: Search — always full width */}
+        <div className="flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-2 w-full">
           <SearchIcon className="w-4 h-4 text-gray-400 shrink-0" />
           <input
             value={inputQ}
@@ -108,40 +108,44 @@ const Movies = () => {
           )}
         </div>
 
-        {/* Genre */}
-        <select
-          value={urlGenre}
-          onChange={(e) => setFilter("genre", e.target.value)}
-          className="bg-white/5 border border-white/10 rounded-full px-4 py-2 text-sm text-gray-300 outline-none cursor-pointer hover:border-white/30 transition"
-        >
-          <option value="" className="bg-gray-900">All Genres</option>
-          {GENRES.map((g) => (
-            <option key={g} value={g} className="bg-gray-900">{g}</option>
-          ))}
-        </select>
-
-        {/* Year */}
-        <select
-          value={urlYear}
-          onChange={(e) => setFilter("year", e.target.value)}
-          className="bg-white/5 border border-white/10 rounded-full px-4 py-2 text-sm text-gray-300 outline-none cursor-pointer hover:border-white/30 transition"
-        >
-          <option value="" className="bg-gray-900">All Years</option>
-          {YEARS.map((y) => (
-            <option key={y} value={y} className="bg-gray-900">{y}</option>
-          ))}
-        </select>
-
-        {/* Clear */}
-        {hasFilters && (
-          <button
-            onClick={clearAll}
-            className="px-4 py-2 text-sm text-primary border border-primary/40 rounded-full hover:bg-primary/10 transition cursor-pointer"
+        {/* Row 2: Genre + Year + Clear */}
+        <div className="flex flex-wrap items-center gap-3">
+          {/* Genre */}
+          <select
+            value={urlGenre}
+            onChange={(e) => setFilter("genre", e.target.value)}
+            className="flex-1 min-w-[130px] bg-white/5 border border-white/10 rounded-full px-4 py-2 text-sm text-gray-300 outline-none cursor-pointer hover:border-white/30 transition"
           >
-            Clear filters
-          </button>
-        )}
+            <option value="" className="bg-gray-900">All Genres</option>
+            {GENRES.map((g) => (
+              <option key={g} value={g} className="bg-gray-900">{g}</option>
+            ))}
+          </select>
+
+          {/* Year */}
+          <select
+            value={urlYear}
+            onChange={(e) => setFilter("year", e.target.value)}
+            className="flex-1 min-w-[120px] bg-white/5 border border-white/10 rounded-full px-4 py-2 text-sm text-gray-300 outline-none cursor-pointer hover:border-white/30 transition"
+          >
+            <option value="" className="bg-gray-900">All Years</option>
+            {YEARS.map((y) => (
+              <option key={y} value={y} className="bg-gray-900">{y}</option>
+            ))}
+          </select>
+
+          {/* Clear */}
+          {hasFilters && (
+            <button
+              onClick={clearAll}
+              className="px-4 py-2 text-sm text-primary border border-primary/40 rounded-full hover:bg-primary/10 transition cursor-pointer whitespace-nowrap"
+            >
+              Clear filters
+            </button>
+          )}
+        </div>
       </div>
+
 
       {/* Title + count */}
       <div className="flex items-center justify-between mb-6">

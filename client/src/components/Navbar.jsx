@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { assets } from "../assets/assets";
-import { MenuIcon, SearchIcon, TicketPlus, XIcon } from "lucide-react";
+import { MenuIcon, TicketPlus, XIcon } from "lucide-react";
 import { useClerk, UserButton, useUser } from "@clerk/clerk-react";
 import { useAppContext } from "../context/AppContext";
 
@@ -82,10 +82,6 @@ const Navbar = () => {
       </div>
 
       <div className="flex items-center gap-8">
-        <SearchIcon
-          onClick={() => { navigate("/movies"); scrollTo(0, 0); }}
-          className="max-md:hidden w-6 h-6 cursor-pointer hover:text-primary transition"
-        />
         {!user ? (
           <button
             onClick={openSignIn}
