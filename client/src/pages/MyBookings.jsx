@@ -32,6 +32,8 @@ const MyBookings = () => {
   useEffect(() => {
     if (user) {
       getMyBookings();
+    } else {
+      setIsLoading(false);
     }
   }, [user]);
 
@@ -43,7 +45,19 @@ const MyBookings = () => {
       </div>
       <h1 className="text-lg font-semibold mb-4">My Bookings</h1>
 
-      {bookings.map((item, index) => (
+      {bookings.length === 0 ? (
+        <div className="flex flex-col items-center justify-center py-24 text-center">
+          <div className="text-6xl mb-4">🎟️</div>
+          <h2 className="text-xl font-semibold text-white mb-2">No bookings yet</h2>
+          <p className="text-gray-400 mb-6">Looks like you haven't booked any tickets yet.</p>
+          <Link
+            to="/"
+            className="bg-primary px-6 py-2 rounded-full text-sm font-medium hover:opacity-90 transition"
+          >
+            Browse Movies
+          </Link>
+        </div>
+      ) : bookings.map((item, index) => (
         <div
           key={index}
           className="flex flex-col md:flex-row justify-between bg-primary/8 border border-primary/20 rounded-lg mt-4 p-2 max-w-3xl"

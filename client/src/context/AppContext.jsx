@@ -44,7 +44,8 @@ export const AppProvider = ({ children }) => {
       if (data.success) {
         setShows(data.shows);
       } else {
-        toast.error(data.message);
+        // Silently ignore DB connection/timeout errors — treat as empty
+        console.warn("[fetchShows] Could not load shows:", data.message);
       }
     } catch (error) {
       console.error(error);
@@ -60,7 +61,8 @@ export const AppProvider = ({ children }) => {
       if (data.success) {
         setFavoriteMovies(data.movies);
       } else {
-        toast.error(data.message);
+        // Silently ignore DB connection/timeout errors — treat as empty
+        console.warn("[fetchFavoriteMovies] Could not load favorites:", data.message);
       }
     } catch (error) {
       console.error(error);
